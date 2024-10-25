@@ -30,6 +30,10 @@ class erregistro : AppCompatActivity() {
     lateinit var chAlPol: CheckBox
     val ListaArroGus= arrayOf("Kamiseta","Praka","Jaka","Abrigoa")
     val ListaEgoHiri= arrayOf("Madril","Bartzelona","Valentzia")
+    var noSele = true
+    var arropaGus: String =""
+    var egoitzaHi: String =""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_erregistro)
@@ -63,6 +67,7 @@ class erregistro : AppCompatActivity() {
 
 
         btnErre.setOnClickListener {
+            spinnerEmaitzaEman()
             GordeBD()
 
 
@@ -73,7 +78,7 @@ class erregistro : AppCompatActivity() {
     // datu basera gordetzeko funtzioa
     fun GordeBD(){
 
-        var noSele = false
+
 
        val admin = AdminSQLiteOpenHelper(this,"administracion",null,1)
       val bd=admin.writableDatabase
@@ -82,64 +87,9 @@ class erregistro : AppCompatActivity() {
         val abizena: String= abizena.text.toString()
         val pasahitza: String = Pasa.text.toString()
         val email: String =ema.text.toString()
-        var arropaGus: String =""
-
-        var egoitzaHi: String =""
-
         var listaChecks =ArrayList<String>()
 
-        spArrogus.onItemSelectedListener= object :AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, posicion: Int, id: Long) {
-                val seleItem = ListaArroGus[posicion]
 
-                when (seleItem){
-
-                    "Kamiseta"-> arropaGus="Kamiseta"
-
-                    "Praka"-> arropaGus="Praka"
-
-                    "Jaka"-> arropaGus="Jaka"
-
-                    "Abrigoa"-> arropaGus="Abrigoa"
-
-
-                    else -> noSele=true
-                }
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
-
-            }
-
-
-        }
-
-        spEgoHi.onItemSelectedListener= object :AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, posicion: Int, id: Long) {
-                val seleItem = ListaEgoHiri[posicion]
-
-                when (seleItem){
-
-                    "Madril"-> egoitzaHi="Madril"
-
-                    "Bartzelona"-> egoitzaHi="Bartzelona"
-
-                    "Valentzia"-> egoitzaHi="Valentzia"
-
-
-
-                    else -> noSele=true
-                }
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
-
-            }
-
-
-        }
 
         if(chAlPol.isChecked){
 
@@ -162,6 +112,7 @@ class erregistro : AppCompatActivity() {
         val registro= ContentValues()
         registro.put("izena",nom)
         registro.put("abizena",abizena)
+        registro.put("email",email)
         registro.put("pasahitza",pasahitza)
         registro.put("arropaGustukoena",arropaGus)
         registro.put("egoitzaHiria",egoitzaHi)
@@ -174,7 +125,7 @@ class erregistro : AppCompatActivity() {
             val i= Intent(this,MainActivity::class.java)
             startActivity(i)
         }
-        else{
+        if(noSele){
             toastAgertu("Kampo Guztiak ez dira sartu")
         }
 
@@ -187,26 +138,68 @@ class erregistro : AppCompatActivity() {
 
 
 
-   //     val registro= ContentValues()
-
-   //     registro.put("codigo",kod)
-   //     registro.put("description",deskibapena)
-  //      registro.put("precio", pre)
-
-   //     bd.insert("articulos",null, registro)
-    //    bd.close()
-   //     kodigoa.setText("")
-    //    deskri.setText("")
-    //    prezioa.setText("")
-   //     toastAgertu("datuak gorde dira")
 
 
 
-   // }
+
    fun toastAgertu(mezua : String){
        val t = Toast.makeText(this,mezua, Toast.LENGTH_SHORT)
        t.show()
 
    }
 
+    fun spinnerEmaitzaEman() {
+        spArrogus.onItemSelectedListener= object :AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, posicion: Int, id: Long) {
+                val seleItem = ListaArroGus[posicion]
+                noSele=false
+
+                when (seleItem){
+
+                    "Kamiseta"-> arropaGus="Kamiseta"
+
+                    "Praka"-> arropaGus="Praka"
+
+                    "Jaka"-> arropaGus="Jaka"
+
+                    "Abrigoa"-> arropaGus="Abrigoa"
+
+
+                    else -> arropaGus=""
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                noSele=true
+
+            }
+
+
+        }
+
+        spEgoHi.onItemSelectedListener= object :AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, posicion: Int, id: Long) {
+                val seleItem = ListaEgoHiri[posicion]
+                noSele=false
+                when (seleItem){
+
+                    "Madril"-> egoitzaHi="Madril"
+
+                    "Bartzelona"-> egoitzaHi="Bartzelona"
+
+                    "Valentzia"-> egoitzaHi="Valentzia"
+
+
+
+                    else -> egoitzaHi=""
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                noSele=true
+            }
+
+
+        }
+    }
 }
