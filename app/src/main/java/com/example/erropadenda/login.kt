@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 
 class login : AppCompatActivity() {
     lateinit var   emailTxt: EditText
@@ -18,7 +19,8 @@ class login : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       // enableEdgeToEdge()
+
+        val screenSplash=installSplashScreen()
         setContentView(R.layout.login)
 
         emailTxt=findViewById (R.id.txtEmail)
@@ -26,6 +28,13 @@ class login : AppCompatActivity() {
         btnSaHa=findViewById(R.id.btnHasi)
         btnErre=findViewById(R.id.btnErregis)
 
+        //-----SPLASH-------
+
+
+        screenSplash.setKeepOnScreenCondition{false}
+
+
+       //--------------------
 
         btnErre.setOnClickListener {
 
