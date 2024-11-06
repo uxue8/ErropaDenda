@@ -20,7 +20,7 @@ class login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-      //  val screenSplash=installSplashScreen()
+       val screenSplash=installSplashScreen()
         setContentView(R.layout.login)
 
         emailTxt=findViewById (R.id.txtEmail)
@@ -31,7 +31,7 @@ class login : AppCompatActivity() {
         //-----SPLASH-------
 
 
-     //   screenSplash.setKeepOnScreenCondition{false}
+        screenSplash.setKeepOnScreenCondition{false}
 
 
        //--------------------
