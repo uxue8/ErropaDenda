@@ -111,7 +111,7 @@ class erregistro : AppCompatActivity() {
         if(!noSele){
         val registro= ContentValues()
         registro.put("izena",nom)
-        registro.put("abizena",abizena)
+        registro.put("abizena",abizena) 
         registro.put("email",email)
         registro.put("pasahitza",pasahitza)
         registro.put("arropaGustukoena",arropaGus)
