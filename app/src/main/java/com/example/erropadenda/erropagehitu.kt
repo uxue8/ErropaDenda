@@ -38,6 +38,7 @@ class erropagehitu : AppCompatActivity() {
 
         erroizena=findViewById(R.id.ediIzena)
         spmota=findViewById(R.id.spErMota)
+
         kolorea=findViewById(R.id.ediKolorea)
         prezioa=findViewById(R.id.ediPrezioa)
         taS=findViewById(R.id.chS)
@@ -51,8 +52,43 @@ class erropagehitu : AppCompatActivity() {
         spmota.adapter=adapter
 
 
+        // Asignar listeners para que solo se permita un CheckBox de "Talla" seleccionado a la vez
+
+        taS.setOnClickListener {  handleCheckBoxSelection(taS) }
+        taM.setOnClickListener { handleCheckBoxSelection(taM) }
+        taL.setOnClickListener { handleCheckBoxSelection(taL) }
+        taXl.setOnClickListener { handleCheckBoxSelection(taXl) }
+
+        // Asignar listeners para que solo se permita un CheckBox de "Disponibilidad" seleccionado a la vez
+        chBai.setOnClickListener { handleCheckBoxSelection(chBai, chEz) }
+        chEz.setOnClickListener { handleCheckBoxSelection(chEz, chBai) }
+
 
     }
+
+    // Método para gestionar la selección de una talla
+    private fun handleCheckBoxSelection(selectedCheckBox: CheckBox) {
+        listOf(taS, taM, taL, taXl).forEach { checkBox ->
+            checkBox.isChecked = checkBox == selectedCheckBox
+        }
+    }
+
+    // Método para gestionar la selección de disponibilidad
+    private fun handleCheckBoxSelection(selectedCheckBox: CheckBox, otherCheckBox: CheckBox) {
+        if (selectedCheckBox.isChecked) {
+            otherCheckBox.isChecked = false
+        }
+    }
+
+
+    //metodo para saber que talla a seleccionado
+
+    fun tallaSele(){
+
+
+    }
+
+
 
 
     fun gordeProduktua(){
@@ -63,6 +99,20 @@ class erropagehitu : AppCompatActivity() {
         val mota=findViewById<Spinner>(R.id.spErMota).selectedItem.toString()
         val kolorea=kolorea.text.toString()
         val pre=prezioa.text.toString().toInt()
+
+        var talla=""
+
+        var eskuragarritasuna=""
+
+        when(chBai.isChecked){
+                    true -> eskuragarritasuna="bai"
+                     else ->eskuragarritasuna="ez"
+        }
+
+
+
+
+
 
 
 
