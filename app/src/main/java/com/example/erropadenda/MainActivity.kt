@@ -28,6 +28,13 @@ class MainActivity : AppCompatActivity() {
         //  return super.onOptionsItemSelected(item)
         return when (item.itemId) {
 
+
+            R.id.meErroZerre->{
+                val i = Intent(this, erropaZerrenda::class.java)
+                startActivity(i)
+
+                true
+            }
             R.id.meErrogehi -> {
                 val i = Intent(this, erropagehitu::class.java)
                 startActivity(i)
