@@ -1,5 +1,6 @@
 package com.example.erropadenda
 
+import android.content.ContentValues
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -64,6 +65,13 @@ class erropagehitu : AppCompatActivity() {
         chEz.setOnClickListener { handleCheckBoxSelection(chEz, chBai) }
 
 
+        //gehitu botoia
+
+        btnGehitu.setOnClickListener {
+            gordeProduktua()
+        }
+
+
     }
 
     // Método para gestionar la selección de una talla
@@ -81,33 +89,56 @@ class erropagehitu : AppCompatActivity() {
     }
 
 
-    //metodo para saber que talla a seleccionado
-
-    fun tallaSele(){
-
-
-    }
-
-
 
 
     fun gordeProduktua(){
+        var noSele=false
         val admin = AdminSQLiteOpenHelper(this,"administracion",null,1)
         val bd=admin.writableDatabase
 
         val nom=erroizena.text.toString()
         val mota=findViewById<Spinner>(R.id.spErMota).selectedItem.toString()
-        val kolorea=kolorea.text.toString()
-        val pre=prezioa.text.toString().toInt()
+        val kolor=kolorea.text.toString()
+        val pre=prezioa.text.toString()
 
-        var talla=""
+        val esku= when{
 
-        var eskuragarritasuna=""
-
-        when(chBai.isChecked){
-                    true -> eskuragarritasuna="bai"
-                     else ->eskuragarritasuna="ez"
+            chBai.isChecked-> "bai"
+            chEz.isChecked->"ez"
+            else -> ""
         }
+        val ta = when {
+            taS.isChecked -> "S"
+            taM.isChecked -> "M"
+            taL.isChecked -> "L"
+            taXl.isChecked -> "XL"
+            else -> ""
+        }
+
+        if(nom=="" || mota=="" || kolor=="" || pre==""){
+            noSele=true
+        }
+
+        if(!noSele){
+            val registro= ContentValues()
+            registro.put("izena",nom)
+            registro.put("mota",mota)
+            registro.put("talla",ta)
+            registro.put("kolorea",kolor)
+            registro.put("prezioa",pre)
+            registro.put("eskuragarritasuna",esku)
+            bd.insert("productos",null, registro)
+            bd.close()
+            toastAgertu("datu basean produktoa gorde da")
+
+        }
+        else{
+            toastAgertu("ez dira datu guztiak sartu")
+        }
+
+
+
+
 
 
 
