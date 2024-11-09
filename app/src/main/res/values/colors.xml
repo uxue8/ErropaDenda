@@ -5,4 +5,6 @@
     <color name="splash">#e8cee0</color>
     <color name="background">#AB98A7</color>
     <color name="botonCo">#ff19b2</color>
+    <color name="colorSelected">#FFDDDD</color>
+    <color name="colorUnselected">#FFFFFF</color>
 </resources>

@@ -1,7 +1,11 @@
 package com.example.erropadenda
 
+import ItemAdapter
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -11,41 +15,50 @@ import androidx.recyclerview.widget.RecyclerView
 
 class erropaZerrenda : AppCompatActivity() {
 
-        lateinit var     btnBuelta: Button
-        lateinit var  recyListErro: RecyclerView
-        lateinit var  erropaLista: List<Erropa>
+    lateinit var btnBuelta: Button
+    lateinit var recyListErro: RecyclerView
+    var erropaLista: ArrayList<Erropa> = ArrayList() // Inicializada como lista vacía
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-      //  enableEdgeToEdge()
         setContentView(R.layout.activity_erropa_zerrenda)
-       // ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-       //     val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-      //      v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-      //      insets
-      //  }
-        btnBuelta=findViewById(R.id.btnBueltatu)
-        recyListErro=findViewById(R.id.recyErro)
 
-        erropaerakutsi()
+        btnBuelta = findViewById(R.id.btnBueltatu)
+        recyListErro = findViewById(R.id.recyErro)
 
-        // Configurar el RecyclerView
-        recyListErro=findViewById(R.id.recyErro)
-        recyListErro.layoutManager = LinearLayoutManager(this)
-        recyListErro.adapter = ItemAdapter(erropaLista)
+        erropaerakutsi() // Llamada a la función que carga los datos
     }
 
-    fun erropaerakutsi(){
-        val admin = AdminSQLiteOpenHelper(this,"administracion",null,1)
-        val bd=admin.writableDatabase
-        val lerroa =bd.rawQuery("select * from productos",null)
-        if(lerroa.moveToFirst()){
+    fun erropaerakutsi() {
+        val admin = AdminSQLiteOpenHelper(this, "administracion", null, 1)
+        val bd = admin.writableDatabase
+        val lerroa = bd.rawQuery("select * from productos", null)
 
-            while(lerroa.moveToNext()){
-                var erropak = Erropa(lerroa.getInt(0),lerroa.getString(1),lerroa.getString(2),lerroa.getString(3),lerroa.getString(4),lerroa.getString(5),lerroa.getString(6))
-                erropaLista= listOf(erropak)
-            }
+        // Limpiar la lista para evitar duplicados si esta función se llama varias veces
+        erropaLista.clear()
+        while (lerroa.moveToNext()) {
+            val erropak = Erropa(
+                lerroa.getInt(0),
+                lerroa.getString(1),
+                lerroa.getString(2),
+                lerroa.getString(3),
+                lerroa.getString(4),
+                lerroa.getString(5),
+                lerroa.getString(6)
+            )
+            erropaLista.add(erropak) // Agregar cada elemento a la lista
+        }
+        Log.d("erropaZerrenda", "Total elementos en erropaLista: ${erropaLista.size}")
+        lerroa.close()
+        bd.close()
+
+        lerroa.close()
+        bd.close()
+
+        // Configurar el RecyclerView con los datos cargados
+        recyListErro.layoutManager = LinearLayoutManager(this)
+        recyListErro.adapter = ItemAdapter(erropaLista) { erropa ->
+            Toast.makeText(this, "Seleccionaste: ${erropa.izena}", Toast.LENGTH_SHORT).show()
         }
     }
 }
-
-
