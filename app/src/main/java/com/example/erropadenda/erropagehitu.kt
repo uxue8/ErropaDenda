@@ -27,7 +27,7 @@ class erropagehitu : AppCompatActivity() {
       lateinit var chBai:CheckBox
       lateinit var chEz: CheckBox
       lateinit var btnGehitu: Button
-        lateinit var btnBuelta: Button
+      lateinit var btnBuelta: Button
 
       val  ListaMota= arrayOf("Kamiseta","Praka","Jaka","Abrigoa")
     override fun onCreate(savedInstanceState: Bundle?) {

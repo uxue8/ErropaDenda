@@ -22,15 +22,15 @@
         app:layout_constraintVertical_bias="0.102" />
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyErro"
-            android:layout_width="293dp"
-            android:layout_height="331dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.362" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyErro"
+        android:layout_width="293dp"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.362" />
     
     <Button
         android:id="@+id/btnBueltatu"

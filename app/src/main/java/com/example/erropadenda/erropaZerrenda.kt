@@ -27,6 +27,13 @@ class erropaZerrenda : AppCompatActivity() {
         recyListErro = findViewById(R.id.recyErro)
 
         erropaerakutsi() // Llamada a la función que carga los datos
+
+        btnBuelta.setOnClickListener{
+
+            val i= Intent(this,MainActivity::class.java)
+            startActivity(i)
+
+        }
     }
 
     fun erropaerakutsi() {
@@ -58,7 +65,18 @@ class erropaZerrenda : AppCompatActivity() {
         // Configurar el RecyclerView con los datos cargados
         recyListErro.layoutManager = LinearLayoutManager(this)
         recyListErro.adapter = ItemAdapter(erropaLista) { erropa ->
-            Toast.makeText(this, "Seleccionaste: ${erropa.izena}", Toast.LENGTH_SHORT).show()
+           // Toast.makeText(this, "Seleccionaste: ${erropa.izena}", Toast.LENGTH_SHORT).show()
+
+            val i= Intent(this,ProductDetailActivity::class.java)
+            //cojo los datos para llevarlos a otra pagina
+            i.putExtra("kodea",erropa.kodea)
+            i.putExtra("izena",erropa.izena)
+            i.putExtra("mota",erropa.mota)
+            i.putExtra("talla",erropa.talla)
+            i.putExtra("kolorea",erropa.kolorea)
+            i.putExtra("prezioa",erropa.prezioa)
+            i.putExtra("eskuragarritasuna",erropa.eskuragarritasuna)
+            startActivity(i)
         }
     }
 }
