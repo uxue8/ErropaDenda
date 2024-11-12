@@ -26,7 +26,7 @@ class ProductDetailActivity : AppCompatActivity() {
     lateinit var btnEditatu: Button
     lateinit var btnBuelta: Button
     val  ListaMota= arrayOf("Kamiseta","Praka","Jaka","Abrigoa")
-
+    var kodea=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -47,6 +47,7 @@ class ProductDetailActivity : AppCompatActivity() {
         val adapter= ArrayAdapter(this,android.R.layout.simple_spinner_item,ListaMota)
         spmotaEd.adapter=adapter
         var noEncontrado=false
+
         //los datos cogidos de la pantalla zerrenda
         val kode = intent.getIntExtra("id",-1)
         val ize= intent.getStringExtra("izena")
@@ -55,7 +56,7 @@ class ProductDetailActivity : AppCompatActivity() {
         val ko = intent.getStringExtra("kolorea")
         val pre = intent.getStringExtra("prezioa")
         val esku= intent.getStringExtra("eskuragarritasuna")
-
+        kodea=kode
 
 
         //poner los datos en la pantalla
@@ -91,6 +92,35 @@ class ProductDetailActivity : AppCompatActivity() {
             startActivity(i)
         }
 
+        //Editatu
+
+        btnEditatu.setOnClickListener{
+
+        }
+
+    }
+
+    fun erropaEditatu(){
+        val admin = AdminSQLiteOpenHelper(this,"administracion",null,1)
+        val bd=admin.writableDatabase
+
+        val ize= erroizenaEd.text
+        val mota=findViewById<Spinner>(R.id.spErMotaEd).selectedItem.toString()
+        val esku= when{
+
+            chBaiEd.isChecked-> "bai"
+            chEzEd.isChecked->"ez"
+            else -> ""
+        }
+        val ta = when {
+            taSEd.isChecked -> "S"
+            taMEd.isChecked -> "M"
+            taLEd.isChecked -> "L"
+            taXlEd.isChecked -> "XL"
+            else -> ""
+        }
+        val kol = koloreaEd.text
+        val prezi = prezioaEd.text
 
 
     }
