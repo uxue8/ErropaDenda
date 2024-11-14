@@ -7,6 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".ProductDetailActivity">
 
+    <Button
+        android:id="@+id/btnezabatu"
+        android:layout_width="125dp"
+        android:layout_height="52dp"
+        android:text="Ezabatu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.993"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.952" />
+
     <CheckBox
         android:id="@+id/chLEd"
         android:layout_width="98dp"
@@ -100,15 +112,14 @@
 
     <Button
         android:id="@+id/btnBueltaEd"
-        android:layout_width="146dp"
-        android:layout_height="54dp"
+        android:layout_width="129dp"
+        android:layout_height="59dp"
         android:text="Zerrendara bueltatu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.92"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.946" />
+        app:layout_constraintVertical_bias="0.952" />
 
     <Spinner
         android:id="@+id/spErMotaEd"
@@ -206,13 +217,14 @@
 
     <Button
         android:id="@+id/btnErEdi"
-        android:layout_width="146dp"
-        android:layout_height="54dp"
+        android:layout_width="115dp"
+        android:layout_height="56dp"
         android:text=" Editatu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintHorizontal_bias="0.003"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.946" />
+        app:layout_constraintVertical_bias="0.948" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
