@@ -55,7 +55,7 @@ class erropaZerrenda : AppCompatActivity() {
             )
             erropaLista.add(erropak) // Agregar cada elemento a la lista
         }
-        Log.d("erropaZerrenda", "Total elementos en erropaLista: ${erropaLista.size}")
+        Log.d("erropaZerrenda", "Total elementos en erropaLista: ${erropaLista.size} y ids:{er}")
         lerroa.close()
         bd.close()
 
