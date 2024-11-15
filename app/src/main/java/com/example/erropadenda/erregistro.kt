@@ -3,6 +3,7 @@ package com.example.erropadenda
 import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -28,11 +29,11 @@ class erregistro : AppCompatActivity() {
     lateinit var spEgoHi: Spinner
     lateinit var chAlAlgo:CheckBox
     lateinit var chAlPol: CheckBox
+
     val ListaArroGus= arrayOf("Kamiseta","Praka","Jaka","Abrigoa")
     val ListaEgoHiri= arrayOf("Madril","Bartzelona","Valentzia")
-    var noSele = true
-    var arropaGus: String =""
-    var egoitzaHi: String =""
+    var noSele = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,12 +50,8 @@ class erregistro : AppCompatActivity() {
         chAlAlgo=findViewById(R.id.chAlgoAl)
         chAlPol=findViewById(R.id.chPoAL)
 
-
-
-
         val adapter= ArrayAdapter(this,android.R.layout.simple_spinner_item,ListaArroGus)
         spArrogus.adapter=adapter
-
 
         val adapter2= ArrayAdapter(this,android.R.layout.simple_spinner_item,ListaEgoHiri)
         spEgoHi.adapter=adapter2
@@ -67,8 +64,20 @@ class erregistro : AppCompatActivity() {
 
 
         btnErre.setOnClickListener {
-            spinnerEmaitzaEman()
-            GordeBD()
+
+            //Emaila egiaztatu
+            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(ema.text.toString()).matches() && ema.text.toString()=="" ) {
+
+                    //mostrar un toast
+                    toastAgertu("idatzi ondo email-a")
+                    //no ejecuta la funcion gordeDB
+                    return@setOnClickListener
+
+
+            }else{
+                GordeBD()
+            }
+
 
 
         }
@@ -88,7 +97,10 @@ class erregistro : AppCompatActivity() {
         val pasahitza: String = Pasa.text.toString()
         val email: String =ema.text.toString()
         var listaChecks =ArrayList<String>()
+        val arropaGus=findViewById<Spinner>(R.id.spArropaGus).selectedItem.toString()
+        val egoitzaHiri=findViewById<Spinner>(R.id.spEgoHi).selectedItem.toString()
 
+        Log.d("los valores", "$nom,$abizena,$pasahitza,$arropaGus,$egoitzaHiri")
 
 
         if(chAlPol.isChecked){
@@ -100,7 +112,7 @@ class erregistro : AppCompatActivity() {
             listaChecks.add("Algodoiari alergikoa")
         }
 
-        if( nom=="" || abizena=="" || pasahitza=="" || email==""){
+        if( nom=="" || abizena=="" || pasahitza=="" || email=="" || arropaGus =="" || egoitzaHiri==""){
 
             noSele=true
 
@@ -115,7 +127,7 @@ class erregistro : AppCompatActivity() {
         registro.put("email",email)
         registro.put("pasahitza",pasahitza)
         registro.put("arropaGustukoena",arropaGus)
-        registro.put("egoitzaHiria",egoitzaHi)
+        registro.put("egoitzaHiria",egoitzaHiri)
         var respuestaConComas=listaChecks.joinToString(",");
         registro.put("jakinarazpenIrizpideak",respuestaConComas)
 
@@ -148,58 +160,5 @@ class erregistro : AppCompatActivity() {
 
    }
 
-    fun spinnerEmaitzaEman() {
-        spArrogus.onItemSelectedListener= object :AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, posicion: Int, id: Long) {
-                val seleItem = ListaArroGus[posicion]
-                noSele=false
 
-                when (seleItem){
-
-                    "Kamiseta"-> arropaGus="Kamiseta"
-
-                    "Praka"-> arropaGus="Praka"
-
-                    "Jaka"-> arropaGus="Jaka"
-
-                    "Abrigoa"-> arropaGus="Abrigoa"
-
-
-                    else -> arropaGus=""
-                }
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                noSele=true
-
-            }
-
-
-        }
-
-        spEgoHi.onItemSelectedListener= object :AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, posicion: Int, id: Long) {
-                val seleItem = ListaEgoHiri[posicion]
-                noSele=false
-                when (seleItem){
-
-                    "Madril"-> egoitzaHi="Madril"
-
-                    "Bartzelona"-> egoitzaHi="Bartzelona"
-
-                    "Valentzia"-> egoitzaHi="Valentzia"
-
-
-
-                    else -> egoitzaHi=""
-                }
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                noSele=true
-            }
-
-
-        }
     }
-}

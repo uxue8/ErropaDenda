@@ -45,6 +45,20 @@ class login : AppCompatActivity() {
 
         btnSaHa.setOnClickListener{
 
+            if(emailTxt.text.toString()=="" && passTxt.text.toString()==""){
+                toastAgertu("ez duzu email eta pasahitza sartu")
+                return@setOnClickListener
+            }
+            if (emailTxt.text.toString()=="" || !android.util.Patterns.EMAIL_ADDRESS.matcher(emailTxt.text.toString()).matches()){
+                toastAgertu("ez duzu email-a ondo sartu ")
+                return@setOnClickListener
+            }
+            if(passTxt.text.toString()==""){
+                toastAgertu("ez duzu pasahitza sartu")
+                return@setOnClickListener
+
+            }
+
             login()
 
         }
