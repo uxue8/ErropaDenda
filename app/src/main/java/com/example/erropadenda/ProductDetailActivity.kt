@@ -215,7 +215,7 @@ class ProductDetailActivity : AppCompatActivity() {
 
         }
         if (prezi != originalPrezioa) {
-            Aldatu("prezioa", prezi.toInt().toString())
+            Aldatu("prezioa", prezi.toString())
 
         }
         if(ta !=originalTalla ){
