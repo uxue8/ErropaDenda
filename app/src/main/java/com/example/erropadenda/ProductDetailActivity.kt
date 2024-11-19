@@ -4,6 +4,8 @@ import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
@@ -102,14 +104,14 @@ class ProductDetailActivity : AppCompatActivity() {
 
 
 
-        // Asignar listeners para que solo se permita un CheckBox de "Talla" seleccionado a la vez
+        // Hemen egiten da bakarrik checkBox bat aukeratu ahal dela talletan
 
         taSEd.setOnClickListener {  handleCheckBoxSelection(taSEd) }
         taMEd.setOnClickListener { handleCheckBoxSelection(taMEd) }
         taLEd.setOnClickListener { handleCheckBoxSelection(taLEd) }
         taXlEd.setOnClickListener { handleCheckBoxSelection(taXlEd) }
 
-        // Asignar listeners para que solo se permita un CheckBox de "Disponibilidad" seleccionado a la vez
+        // Hemen egiten da bakarrik checkBox bat aukeratu ahal dela eskuragarritasunean
         chBaiEd.setOnClickListener { handleCheckBoxSelection(chBaiEd, chEzEd) }
         chEzEd.setOnClickListener { handleCheckBoxSelection(chEzEd, chBaiEd) }
 
@@ -197,6 +199,8 @@ class ProductDetailActivity : AppCompatActivity() {
         }
     }
 
+    //Erabiltzailea depende ze aldatzen duaen aldatzen da kanpo bat
+
     fun ikusteaAldatuDen(ize: String, mo: String, esku: String, kol: String, prezi: String, ta: String) {
         if (ize != originalIzena) {
             Aldatu("izena", ize)
@@ -223,6 +227,8 @@ class ProductDetailActivity : AppCompatActivity() {
 
         }
     }
+
+
     //Ezabatu datu Basean
 
     fun ezabatuErropa(){
@@ -253,6 +259,49 @@ class ProductDetailActivity : AppCompatActivity() {
             otherCheckBox.isChecked = false
         }
     }
+
+    //menu
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return true //super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        //  return super.onOptionsItemSelected(item)
+        return when (item.itemId) {
+
+
+            R.id.meErroZerre->{
+                val i = Intent(this, erropaZerrenda::class.java)
+                startActivity(i)
+
+                true
+            }
+            R.id.meErrogehi -> {
+                val i = Intent(this, erropagehitu::class.java)
+                startActivity(i)
+
+                true
+            }
+
+            R.id.meIr -> {
+                finish()
+
+                true
+            }
+
+            R.id.meSaItxi -> {
+                val i = Intent(this, login::class.java)
+                startActivity(i)
+
+
+                true
+            }
+
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
 
 
 }

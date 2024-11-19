@@ -19,44 +19,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu, menu)
-        return true //super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        //  return super.onOptionsItemSelected(item)
-        return when (item.itemId) {
 
 
-            R.id.meErroZerre->{
-                val i = Intent(this, erropaZerrenda::class.java)
-                startActivity(i)
-
-                true
-            }
-            R.id.meErrogehi -> {
-                val i = Intent(this, erropagehitu::class.java)
-                startActivity(i)
-
-                true
-            }
-
-            R.id.meIr -> {
-                finish()
-
-                true
-            }
-
-            R.id.meSaItxi -> {
-                val i = Intent(this, login::class.java)
-                startActivity(i)
-
-
-                true
-            }
-
-            else -> return super.onOptionsItemSelected(item)
-        }
-    }
 }

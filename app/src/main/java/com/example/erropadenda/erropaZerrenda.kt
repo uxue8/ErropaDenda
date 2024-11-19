@@ -4,6 +4,8 @@ import ItemAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -15,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class erropaZerrenda : AppCompatActivity() {
 
-    lateinit var btnBuelta: Button
+
     lateinit var recyListErro: RecyclerView
     var erropaLista: ArrayList<Erropa> = ArrayList() // Inicializada como lista vacía
 
@@ -23,17 +25,12 @@ class erropaZerrenda : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_erropa_zerrenda)
 
-        btnBuelta = findViewById(R.id.btnBueltatu)
         recyListErro = findViewById(R.id.recyErro)
 
         erropaerakutsi() // Llamada a la función que carga los datos
 
-        btnBuelta.setOnClickListener{
-
-            val i= Intent(this,MainActivity::class.java)
-            startActivity(i)
-
-        }
+        //Menuaren tituloa kentzeko
+        supportActionBar?.setDisplayShowTitleEnabled(false)
     }
 
     fun erropaerakutsi() {
@@ -79,4 +76,47 @@ class erropaZerrenda : AppCompatActivity() {
             startActivity(i)
         }
     }
+
+    //menu
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return true //super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        //  return super.onOptionsItemSelected(item)
+        return when (item.itemId) {
+
+
+            R.id.meErroZerre->{
+                val i = Intent(this, erropaZerrenda::class.java)
+                startActivity(i)
+
+                true
+            }
+            R.id.meErrogehi -> {
+                val i = Intent(this, erropagehitu::class.java)
+                startActivity(i)
+
+                true
+            }
+
+            R.id.meIr -> {
+                finish()
+
+                true
+            }
+
+            R.id.meSaItxi -> {
+                val i = Intent(this, login::class.java)
+                startActivity(i)
+
+
+                true
+            }
+
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
 }

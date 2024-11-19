@@ -7,4 +7,6 @@
     <color name="botonCo">#ff19b2</color>
     <color name="colorSelected">#FFDDDD</color>
     <color name="colorUnselected">#FFFFFF</color>
+    <color name="action_bar_color">#ff19b2</color>
+    <color name="action_bar_text_color">#FFFFFFFF</color>
 </resources>

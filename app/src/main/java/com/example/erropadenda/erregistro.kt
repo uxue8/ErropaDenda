@@ -134,7 +134,7 @@ class erregistro : AppCompatActivity() {
         bd.insert("usuarios",null, registro)
         bd.close()
             toastAgertu("datu basean datuak gorde dira")
-            val i= Intent(this,MainActivity::class.java)
+            val i= Intent(this,erropaZerrenda::class.java)
             startActivity(i)
         }
         if(noSele){

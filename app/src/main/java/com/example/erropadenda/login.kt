@@ -74,7 +74,7 @@ class login : AppCompatActivity() {
         val lerroa=bd.rawQuery("select * from usuarios where email='$ema' and pasahitza='$contra'",null)
         if(lerroa.moveToFirst()){
             toastAgertu("Ongi etorri")
-            val i= Intent(this,MainActivity::class.java)
+            val i= Intent(this,erropaZerrenda::class.java)
             startActivity(i)
 
         }else{
