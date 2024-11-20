@@ -79,7 +79,7 @@ class ProductDetailActivity : AppCompatActivity() {
 
 
 
-        //poner los datos en la pantalla
+        //datuak pantailan ipini
 
 
         erroizenaEd.setText(originalIzena)
@@ -176,7 +176,7 @@ class ProductDetailActivity : AppCompatActivity() {
             toastAgertu("ez duzu ezer aldatu") }
         if(!noCambia){
             //Hemen komprobatzen kanpo bat aldatu den edo ez
-          if(prezi==""){
+          if(prezi=="" || prezi=="0"||prezi=="0.0"){
               toastAgertu("ezin da Prezioa hutsik ustea ")
           }else{
               ikusteaAldatuDen(ize, mo, esku, kol, prezi,ta)

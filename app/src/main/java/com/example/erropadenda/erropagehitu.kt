@@ -57,14 +57,14 @@ class erropagehitu : AppCompatActivity() {
         spmota.adapter=adapter
 
 
-        // Asignar listeners para que solo se permita un CheckBox de "Talla" seleccionado a la vez
+        // Hemen egiten da bakarrik checkBox bat aukeratu ahal dela talletan
 
         taS.setOnClickListener {  handleCheckBoxSelection(taS) }
         taM.setOnClickListener { handleCheckBoxSelection(taM) }
         taL.setOnClickListener { handleCheckBoxSelection(taL) }
         taXl.setOnClickListener { handleCheckBoxSelection(taXl) }
 
-        // Asignar listeners para que solo se permita un CheckBox de "Disponibilidad" seleccionado a la vez
+        // Hemen egiten da bakarrik checkBox bat aukeratu ahal dela eskuragarritasunean
         chBai.setOnClickListener { handleCheckBoxSelection(chBai, chEz) }
         chEz.setOnClickListener { handleCheckBoxSelection(chEz, chBai) }
 
@@ -125,7 +125,11 @@ class erropagehitu : AppCompatActivity() {
             else -> ""
         }
 
-        if(nom=="" || mota=="" || kolor=="" || pre==""){
+        if(nom=="" || mota=="" || kolor=="" || pre=="" ){
+            noSele=true
+        }
+        if( pre=="0"||pre=="0.0"){
+            toastAgertu("prezioa ezin da izan 0")
             noSele=true
         }
 
