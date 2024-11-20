@@ -32,7 +32,7 @@ class ProductDetailActivity : AppCompatActivity() {
     lateinit var btnEditatu: Button
     lateinit var btnBuelta: Button
     lateinit var btnEzabatu: Button
-    val  ListaMota= arrayOf("Kamiseta","Praka","Jaka","Abrigoa")
+    val  ListaMota= arrayOf("Kamiseta","Praka","Jaka","Abrigoa","Eskularruak","Galtzerdiak")
     private var  kodeaID : Int? =null
     private var originalIzena: String? = null
     private var originalMota: String? = null
@@ -89,6 +89,8 @@ class ProductDetailActivity : AppCompatActivity() {
             "Praka"->spmotaEd.setSelection(1)
             "Jaka"->spmotaEd.setSelection(2)
             "Abrigoa"->spmotaEd.setSelection(3)
+            "Eskularruak"->spmotaEd.setSelection(4)
+            "Galtzerdiak"->spmotaEd.setSelection(5)
             else-> noEncontrado=true
        }
         when(originalTalla){
@@ -174,8 +176,12 @@ class ProductDetailActivity : AppCompatActivity() {
             toastAgertu("ez duzu ezer aldatu") }
         if(!noCambia){
             //Hemen komprobatzen kanpo bat aldatu den edo ez
+          if(prezi==""){
+              toastAgertu("ezin da Prezioa hutsik ustea ")
+          }else{
+              ikusteaAldatuDen(ize, mo, esku, kol, prezi,ta)
+          }
 
-            ikusteaAldatuDen(ize, mo, esku, kol, prezi,ta)
 
 
 
@@ -207,7 +213,7 @@ class ProductDetailActivity : AppCompatActivity() {
         }
     }
 
-    //Erabiltzailea depende ze aldatzen duaen aldatzen da kanpo bat
+    //Erabiltzailea depende ze aldatzen duen aldatzen da kanpo bat
 
     fun ikusteaAldatuDen(ize: String, mo: String, esku: String, kol: String, prezi: String, ta: String) {
         if (ize != originalIzena) {
@@ -226,7 +232,7 @@ class ProductDetailActivity : AppCompatActivity() {
             Aldatu("kolorea", kol)
 
         }
-        if (prezi != originalPrezioa) {
+        if (prezi != originalPrezioa ) {
             Aldatu("prezioa", prezi.toString())
 
         }
@@ -271,7 +277,7 @@ class ProductDetailActivity : AppCompatActivity() {
     fun AlertaEzabatuBainoLehen() {
         AlertDialog.Builder(this)
             .setTitle("Kontuz!")
-            .setMessage("Seguro erropa hau nahi duzu ezabatu")
+            .setMessage("Seguro nahi duzula ezabatu?")
             .setPositiveButton("Bai") { dialog, _ ->
                 //gertatuko dena bai klikatzen badu
                 ezabatuErropa()

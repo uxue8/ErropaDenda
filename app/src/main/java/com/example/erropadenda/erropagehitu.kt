@@ -31,7 +31,7 @@ class erropagehitu : AppCompatActivity() {
       lateinit var btnGehitu: Button
       lateinit var btnBuelta: Button
 
-      val  ListaMota= arrayOf("Kamiseta","Praka","Jaka","Abrigoa")
+      val  ListaMota= arrayOf("Kamiseta","Praka","Jaka","Abrigoa","Eskularruak","Galtzerdiak")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
