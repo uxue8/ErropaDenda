@@ -37,6 +37,8 @@ class erropagehitu : AppCompatActivity() {
 
         setContentView(R.layout.activity_erropagehitu)
 
+        //Menuaren tituloa kentzeko
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         erroizena=findViewById(R.id.ediIzena)
         spmota=findViewById(R.id.spErMota)
@@ -72,7 +74,7 @@ class erropagehitu : AppCompatActivity() {
         btnGehitu.setOnClickListener {
             gordeProduktua()
         }
-
+        //Erropa zerrendara
         btnBuelta.setOnClickListener {
             val i= Intent(this,erropaZerrenda::class.java)
             startActivity(i)
@@ -82,14 +84,14 @@ class erropagehitu : AppCompatActivity() {
 
     }
 
-    // Método para gestionar la selección de una talla
+    // Bakarrik talla bat aukeratzeko
     private fun handleCheckBoxSelection(selectedCheckBox: CheckBox) {
         listOf(taS, taM, taL, taXl).forEach { checkBox ->
             checkBox.isChecked = checkBox == selectedCheckBox
         }
     }
 
-    // Método para gestionar la selección de disponibilidad
+    // Bakarrik bai edo ez aukeratzeko
     private fun handleCheckBoxSelection(selectedCheckBox: CheckBox, otherCheckBox: CheckBox) {
         if (selectedCheckBox.isChecked) {
             otherCheckBox.isChecked = false
@@ -163,26 +165,27 @@ class erropagehitu : AppCompatActivity() {
         //  return super.onOptionsItemSelected(item)
         return when (item.itemId) {
 
-
+            //Erropa zerrendara joaten da
             R.id.meErroZerre->{
                 val i = Intent(this, erropaZerrenda::class.java)
                 startActivity(i)
 
                 true
             }
+            //Erropa gehitzeko orrira joaten da
             R.id.meErrogehi -> {
                 val i = Intent(this, erropagehitu::class.java)
                 startActivity(i)
 
                 true
             }
-
+            //Aplikazioa izten da
             R.id.meIr -> {
                 finish()
 
                 true
             }
-
+            //Login-era bueltatzen da
             R.id.meSaItxi -> {
                 val i = Intent(this, login::class.java)
                 startActivity(i)

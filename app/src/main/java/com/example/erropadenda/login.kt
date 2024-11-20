@@ -36,6 +36,7 @@ class login : AppCompatActivity() {
 
        //--------------------
 
+        //Erregistro pantailara eraman
         btnErre.setOnClickListener {
 
             val i= Intent(this,erregistro::class.java)
@@ -43,6 +44,7 @@ class login : AppCompatActivity() {
 
         }
 
+        //Konprobatu emaila eta pasahitza ondo idatzita dauden
         btnSaHa.setOnClickListener{
 
             if(emailTxt.text.toString()=="" && passTxt.text.toString()==""){

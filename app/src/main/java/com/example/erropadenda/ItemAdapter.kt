@@ -11,7 +11,7 @@ class ItemAdapter(
     private val onItemClicked: (Erropa) -> Unit
 ) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 
-    private var selectedPosition = RecyclerView.NO_POSITION  // Almacena la posición seleccionada
+    private var selectedPosition = RecyclerView.NO_POSITION  // gordetzen da posiszioa click ematen duzun lekuan
 
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textViewIzena: TextView = itemView.findViewById(R.id.itemIzena)
@@ -22,24 +22,23 @@ class ItemAdapter(
         fun bind(erropa: Erropa, isSelected: Boolean) {
             textViewIzena.text = erropa.izena
             textViewMota.text = erropa.mota
-            textViewPrezioa.text = erropa.prezioa
-            // Cambia el fondo según si está seleccionado o no
+            textViewPrezioa.text = erropa.prezioa+" €"
+            //Aldatzeko fondoa aukeratzen badu edo ez
             itemView.setBackgroundColor(
                 if (isSelected) itemView.context.getColor(R.color.colorSelected)
                 else itemView.context.getColor(R.color.colorUnselected)
             )
 
-            // Configura el listener de clic
+            // TextView-ean click ematean
             itemView.setOnClickListener {
-                // Actualiza el índice seleccionado y notifica el cambio
+                // Posizioa eguneratu
                 val previousPosition = selectedPosition
                 selectedPosition = bindingAdapterPosition
 
-                // Notificar solo las posiciones cambiadas
+                // bakarriki notifikatu aldatu diren posizioak
                 notifyItemChanged(previousPosition)
                 notifyItemChanged(selectedPosition)
 
-                // Llama al listener de clic
                 onItemClicked(erropa)
             }
         }

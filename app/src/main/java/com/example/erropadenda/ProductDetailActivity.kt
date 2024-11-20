@@ -13,6 +13,7 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -39,10 +40,13 @@ class ProductDetailActivity : AppCompatActivity() {
     private var originalKolorea: String? = null
     private var originalPrezioa: String? = null
     private var originalEskuragarritasuna: String? = null
+    var baiKli=false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_product_detail)
+        //Menuaren tituloa kentzeko
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         erroizenaEd=findViewById(R.id.ediIzenaEd)
         spmotaEd=findViewById(R.id.spErMotaEd)
@@ -127,11 +131,15 @@ class ProductDetailActivity : AppCompatActivity() {
 
         btnEditatu.setOnClickListener{
             erropaEditatu()
+
         }
 
         //Ezabatu
         btnEzabatu.setOnClickListener {
-            ezabatuErropa()
+           // ezabatuErropa()
+
+            AlertaEzabatuBainoLehen()
+
 
         }
 
@@ -258,6 +266,23 @@ class ProductDetailActivity : AppCompatActivity() {
         if (selectedCheckBox.isChecked) {
             otherCheckBox.isChecked = false
         }
+    }
+
+    fun AlertaEzabatuBainoLehen() {
+        AlertDialog.Builder(this)
+            .setTitle("Kontuz!")
+            .setMessage("Seguro erropa hau nahi duzu ezabatu")
+            .setPositiveButton("Bai") { dialog, _ ->
+                //gertatuko dena bai klikatzen badu
+                ezabatuErropa()
+                dialog.dismiss()
+
+            }
+            .setNegativeButton("Ez"){ dialog, _ ->
+
+                dialog.dismiss()
+            }
+            .show()
     }
 
     //menu

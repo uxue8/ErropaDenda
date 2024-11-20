@@ -19,26 +19,28 @@ class erropaZerrenda : AppCompatActivity() {
 
 
     lateinit var recyListErro: RecyclerView
-    var erropaLista: ArrayList<Erropa> = ArrayList() // Inicializada como lista vacía
+    var erropaLista: ArrayList<Erropa> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_erropa_zerrenda)
-
-        recyListErro = findViewById(R.id.recyErro)
-
-        erropaerakutsi() // Llamada a la función que carga los datos
-
         //Menuaren tituloa kentzeko
         supportActionBar?.setDisplayShowTitleEnabled(false)
-    }
+        recyListErro = findViewById(R.id.recyErro)
 
+        erropaerakutsi()
+
+
+
+    }
+    //Erropa erakusteko
+    //Select bat egin eta datu guztiak  Erropa ArrayList batean sartzen da
     fun erropaerakutsi() {
         val admin = AdminSQLiteOpenHelper(this, "administracion", null, 1)
         val bd = admin.writableDatabase
         val lerroa = bd.rawQuery("select * from productos", null)
 
-        // Limpiar la lista para evitar duplicados si esta función se llama varias veces
+        //ArrayList garbitu
         erropaLista.clear()
         while (lerroa.moveToNext()) {
             val erropak = Erropa(
@@ -50,7 +52,7 @@ class erropaZerrenda : AppCompatActivity() {
                 lerroa.getString(5),
                 lerroa.getString(6)
             )
-            erropaLista.add(erropak) // Agregar cada elemento a la lista
+            erropaLista.add(erropak)
         }
         Log.d("erropaZerrenda", "Total elementos en erropaLista: ${erropaLista.size} ")
         lerroa.close()
@@ -59,13 +61,12 @@ class erropaZerrenda : AppCompatActivity() {
         lerroa.close()
         bd.close()
 
-        // Configurar el RecyclerView con los datos cargados
+        //Recyclerview konfiguratudatu kargatuekin
         recyListErro.layoutManager = LinearLayoutManager(this)
         recyListErro.adapter = ItemAdapter(erropaLista) { erropa ->
-           // Toast.makeText(this, "Seleccionaste: ${erropa.izena}", Toast.LENGTH_SHORT).show()
 
             val i= Intent(this,ProductDetailActivity::class.java)
-            //cojo los datos para llevarlos a otra pagina
+            //Datuak hartzen ditut beste pantailara eramateko
             i.putExtra("kodea",erropa.kodea)
             i.putExtra("izena",erropa.izena)
             i.putExtra("mota",erropa.mota)

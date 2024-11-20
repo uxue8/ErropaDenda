@@ -30,9 +30,8 @@ class erregistro : AppCompatActivity() {
     lateinit var chAlAlgo:CheckBox
     lateinit var chAlPol: CheckBox
 
-    val ListaArroGus= arrayOf("Kamiseta","Praka","Jaka","Abrigoa")
-    val ListaEgoHiri= arrayOf("Madril","Bartzelona","Valentzia")
-    var noSele = false
+    val ListaArroGus= arrayOf("Kamiseta","Praka","Jaka","Abrigoa","Eskularruak","Galtzerdiak")
+    val ListaEgoHiri= arrayOf("Madril","Bartzelona","Valentzia","Bilbo","Coruña")
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,6 +49,8 @@ class erregistro : AppCompatActivity() {
         chAlAlgo=findViewById(R.id.chAlgoAl)
         chAlPol=findViewById(R.id.chPoAL)
 
+
+        //Array-a Spinner-ean lotu
         val adapter= ArrayAdapter(this,android.R.layout.simple_spinner_item,ListaArroGus)
         spArrogus.adapter=adapter
 
@@ -57,20 +58,20 @@ class erregistro : AppCompatActivity() {
         spEgoHi.adapter=adapter2
 
 
-
+        //Bueltatzen da login-era
         btnBuel.setOnClickListener {
             finish()
         }
 
-
+        //E
         btnErre.setOnClickListener {
 
             //Emaila egiaztatu
             if (!android.util.Patterns.EMAIL_ADDRESS.matcher(ema.text.toString()).matches() && ema.text.toString()=="" ) {
 
-                    //mostrar un toast
+
                     toastAgertu("idatzi ondo email-a")
-                    //no ejecuta la funcion gordeDB
+                    //Ez da funtzioa GordeBD ejekutzatzen
                     return@setOnClickListener
 
 
@@ -88,8 +89,10 @@ class erregistro : AppCompatActivity() {
     fun GordeBD(){
 
 
+        var noSele = false
+        var PassNoBuena=false
 
-       val admin = AdminSQLiteOpenHelper(this,"administracion",null,1)
+        val admin = AdminSQLiteOpenHelper(this,"administracion",null,1)
       val bd=admin.writableDatabase
 
        val nom: String=izena.text.toString()
@@ -99,8 +102,6 @@ class erregistro : AppCompatActivity() {
         var listaChecks =ArrayList<String>()
         val arropaGus=findViewById<Spinner>(R.id.spArropaGus).selectedItem.toString()
         val egoitzaHiri=findViewById<Spinner>(R.id.spEgoHi).selectedItem.toString()
-
-        Log.d("los valores", "$nom,$abizena,$pasahitza,$arropaGus,$egoitzaHiri")
 
 
         if(chAlPol.isChecked){
@@ -117,10 +118,13 @@ class erregistro : AppCompatActivity() {
             noSele=true
 
         }
+        if(pasahitza.length<8){
+            PassNoBuena=true
+        }
 
         //datuak hartu eta ondoren datu basera sartuko dugu
 
-        if(!noSele){
+        if(!noSele && !PassNoBuena){
         val registro= ContentValues()
         registro.put("izena",nom)
         registro.put("abizena",abizena) 
@@ -137,9 +141,26 @@ class erregistro : AppCompatActivity() {
             val i= Intent(this,erropaZerrenda::class.java)
             startActivity(i)
         }
+        //Kanpo guztiak ez badira aldatu
         if(noSele){
             toastAgertu("Kampo Guztiak ez dira sartu")
         }
+        //Pasahitza ez dauka 8 Karaktere
+        if(PassNoBuena){
+            toastAgertu("Pasahitza minimo 8 karaktere euki behar ditu")
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
