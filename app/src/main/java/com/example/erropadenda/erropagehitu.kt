@@ -183,19 +183,18 @@ class erropagehitu : AppCompatActivity() {
 
                 true
             }
-            //Aplikazioa izten da
             R.id.meIr -> {
-                finish()
+
+                finishAffinity()
 
                 true
             }
-            //Login-era bueltatzen da
-            R.id.meSaItxi -> {
-                val i = Intent(this, login::class.java)
-                startActivity(i)
 
+            R.id.meSaItxi -> {
+                finish()
 
                 true
+
             }
 
             else -> return super.onOptionsItemSelected(item)

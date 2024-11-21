@@ -318,17 +318,17 @@ class ProductDetailActivity : AppCompatActivity() {
             }
 
             R.id.meIr -> {
-                finish()
+
+                finishAffinity()
 
                 true
             }
 
             R.id.meSaItxi -> {
-                val i = Intent(this, login::class.java)
-                startActivity(i)
-
+                finish()
 
                 true
+
             }
 
             else -> return super.onOptionsItemSelected(item)
