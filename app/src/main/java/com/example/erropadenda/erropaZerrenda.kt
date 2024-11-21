@@ -110,6 +110,7 @@ class erropaZerrenda : AppCompatActivity() {
             }
 
             R.id.meSaItxi -> {
+
                 finish()
 
                 true
