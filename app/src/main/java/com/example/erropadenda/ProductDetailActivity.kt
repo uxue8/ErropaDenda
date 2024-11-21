@@ -176,8 +176,8 @@ class ProductDetailActivity : AppCompatActivity() {
             toastAgertu("ez duzu ezer aldatu") }
         if(!noCambia){
             //Hemen komprobatzen kanpo bat aldatu den edo ez
-          if(prezi=="" || prezi=="0"||prezi=="0.0"){
-              toastAgertu("ezin da Prezioa hutsik ustea ")
+          if(prezi=="" || prezi=="0"||prezi=="0.0"|| ta=="" || kol=="" || ize==""|| mo==""|| esku=="") {
+              toastAgertu("ezin da aldatu balioa hutsik badago ")
           }else{
               ikusteaAldatuDen(ize, mo, esku, kol, prezi,ta)
           }
@@ -216,6 +216,7 @@ class ProductDetailActivity : AppCompatActivity() {
     //Erabiltzailea depende ze aldatzen duen aldatzen da kanpo bat
 
     fun ikusteaAldatuDen(ize: String, mo: String, esku: String, kol: String, prezi: String, ta: String) {
+
         if (ize != originalIzena) {
             Aldatu("izena", ize)
 
@@ -240,6 +241,7 @@ class ProductDetailActivity : AppCompatActivity() {
             Aldatu("talla",ta)
 
         }
+
     }
 
 

@@ -7,6 +7,19 @@
     android:layout_height="match_parent"
     tools:context=".erropagehitu">
 
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.565" />
+
     <Button
         android:id="@+id/btnBuelta"
         android:layout_width="146dp"
@@ -48,7 +61,7 @@
         android:id="@+id/lblTalla2"
         android:layout_width="211dp"
         android:layout_height="31dp"
-        android:text="TALLA"
+        android:text="TALLA *"
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -114,7 +127,7 @@
         android:id="@+id/lblEscu"
         android:layout_width="211dp"
         android:layout_height="31dp"
-        android:text="ESKURAGARRITASUNA"
+        android:text="ESKURAGARRITASUNA *"
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -129,7 +142,7 @@
         android:id="@+id/lblErropaMota"
         android:layout_width="211dp"
         android:layout_height="31dp"
-        android:text="ERROPA MOTA"
+        android:text="ERROPA MOTA *"
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -215,8 +228,34 @@
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.658" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.646" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.121" />
 </androidx.constraintlayout.widget.ConstraintLayout>
